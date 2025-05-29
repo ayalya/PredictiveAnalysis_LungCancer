@@ -27,7 +27,7 @@ Maka dari itu, diperoleh tujuan sebagai berikut:
 
 ### Solution statements
 Untuk menyelesaikan permasalahan dan mencapai tujuan, akan dilakukan solusi:
-- Menggunakan empat algoritma klasifikasi dengan karakteristik yang berbeda agar mendapatkan performa dan model yang paling optimal menyesuaikan karakteristik data. Jika dirasa belum menemukannya, akan dilakukan _hyperparameter tunning_ untuk mendapatkan parameter yang sesuai dengan data.
+- Menggunakan empat algoritma klasifikasi dengan karakteristik yang berbeda agar mendapatkan performa dan model yang paling optimal menyesuaikan karakteristik data. 
 - Fitur dalam dataset akan banyak dan karakteristiknya beragam, maka dari itu akan digunakan _feature selection_ menggunakan teknik Lasso dan mempertimbangkan matriks korelasi antar fitur.
 - Selain menggunakan akurasi, metrik evaluasi akan mempertimbangkan f1-score, recall, dan precision dengan menyocokan terhadap _confussion matriks_.
 
@@ -88,11 +88,11 @@ Pada proyek ini, dilakukan pengecekan terhadap data yang hilang dan tidak valid.
 - Pada fitur `end_treatment_date`, terdapat melebihi tanggal publish dataset. Oleh harena itu, akan dilakukan pembatasan nilai maksimum hingga tanggal 31 Desember 2024.
 - Sementara itu, pada fitur `age` terindikasi adanya outlier yang ditandai oleh rentang minimum dan maksimum yang sangat lebar. Penanganan outlier pada fitur ini digunakan metode Interquantile Range (IQR).
 
-<img src="" align="center"><a>
+<img src="https://github.com/ayalya/PredictiveAnalysis_LungCancer/blob/main/asset/3BoxplotBeforeHandlingOutlier.png" align="center"><a>
 
 *Gambar 3, Visualisasi Boxplot Sebelum Handling Outlier*
 
-<img src="https://github.com/ayalya/PredictiveAnalysis_LungCancer/blob/main/asset/3BoxplotBeforeHandlingOutlier.png" align="center"><a>
+<img src=https://github.com/ayalya/PredictiveAnalysis_LungCancer/blob/main/asset/4BoxplotBeforeAfterOutlier.png align="center"><a>
 
 *Gambar 4, Visualisasi Boxplot Sesudah Handling Outlier*
 
@@ -218,13 +218,13 @@ Kelebihan dari Lasso:
 2. Membantu menangani overfitting.
 3. Cocok untuk dataset dengan banyak fitur, terutama jika beberapa fitur tidak penting digunakan.
 
-Pada teknik Lasso yang memiliki hubungan dengan target, treshold yang ditetapkan 0,001 dan mendapatkan hasil fitur `counry`, `cancer_stage`, dan `age_group`. Diputuskan, total 6 fitur yang akan digunakan dalam proses pembangunan model ini. Fitur-fitur yang dipilih, yaitu `country`, `cancer_stage`, `age_group`, `survival_months`, `bmi`, dan `cholesterol_group`.
+Pada teknik Lasso yang memiliki hubungan dengan target, treshold yang ditetapkan 0,001 dan mendapatkan hasil fitur `counry`, `cancer_stage`, dan `age_group`. Ditambah dari korelasi yang tinggi antar pada fitur `survival_months`, `bmi`, dan `cholesterol_group` dari visualisasi matrix correlation. Diputuskan, total 6 fitur yang akan digunakan dalam proses pembangunan model ini. Fitur-fitur yang dipilih, yaitu `country`, `cancer_stage`, `age_group`, `survival_months`, `bmi`, dan `cholesterol_group`.
 
 ## 6. Modeling
 
 Berdasarkan karakteristik data yang tidak linear serta jumlah data yang besar, dibutuhkan model dan algoritma yang cukup kompleks dan mampu menangani data dalam jumlah besar. Oleh karena itu, dilakukan percobaan menggunakan empat model berikut:
 
-### 1. **Decision Tree**, 
+### 1. **Decision Tree**
 Merupakan model yang sederhana namun cukup efektif pada data yang banyak baik pada fitur kategorikal, maupun numerikal. Interpretasi yang diberikan jelas terhadap proses pengambilan keputusan. Memiliki kelebihan mudah dipahami, dijelaskan melalui visualisasi pohon keputusan, dan dapat menangani data numerik dan kategorikal. Namun, sensitif terhadap perubahan kecil dalam data dan kurang stabil pada data yang kompleks. Hal ini menjadikan algoritma cocok karena memiliki banyak data numerik dan kategorikal
 
 Pemodelan dilakukan menggunakan library `sklearn.ensemble` dengan memasukkan `X_train_selected` dan `y_train` untuk melatih model, lalu menggunakan `X_test_scaled` dan `y_test` untuk menguji model dengan data testing yang tidak ada pada data training. Pada awal pembangunan mode, parameter yang digunakan `random_state` dan `max_depth` hal ini membuat model kurang memberikan hasil yang baik. Parameter yang digunakan setelah melakukan tuning parameter, yaitu `max_depth = 8` merupakan kedalaman maksimum pohon, `min_samples_leaf = 1` merupakan jumlah minimum sampel di daun, dan `splitter = best` strategi pemilihan split di setiap node.
@@ -258,22 +258,23 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 
 Metrik yang digunakan pada proyek ini meliputi:
 1. **Accuracy**, presentase prediksi yang benar dari keseluruhan data. Dengan rumus: 
-**Accuracy**:  
+<br>
 $$
 \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
 $$
+</br>
 2. **Precision**, presentase seberapa banyak prediksi sebagai positif dan yang benar-benar positif.
-$$
+<br>$$
 \text{Precision} = \frac{TP}{TP + FP}
-$$
+</br>$$
 3. **Recall**, presentase atau nilai data yang benar-benar positif dan yang berhasil terdetaksi oleh model.
-$$
+<br>$$
 \text{Recall} = \frac{TP}{TP + FN}
-$$
+</br>$$
 4. **F1-Score**, rata-rata harmonis dari precision dan recall dan berguna pada saat data tidak seimbang.
-$$
+<br>$$
 \text{F1 Score} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-$$
+<\br>$$
 
 
 Berikut adalah evaluasi pada model:
@@ -294,28 +295,35 @@ Random Forest | 0,75 | 0,23 | 0,06 | 0,093
 KNN     | 0,73 | 0,21 | 0,07 | 0,10
 Gradient Boosting | 0,78 | 0,00 | 0,00 | 0,00
 
-Model telah dilakukan parameter tuning, namun performa model dengan tidak menggunakan parameter tuning lebih baik dalam pelatihan maupun memprediksi data. Hal ini terjadi karena model terlalu general dan target fitur imbalance.
 Proses evaluasi pada proyek ini akan menggunakan akurasi, confusion matrix, dan f1-score. Mengingat rasio nilai pada target tidak merata dengan nilai 1 lebih sedikit, maka evaluasi model akan lebih memperhatikan prediksi ke nilai 1 atau true positif (maka dari itu metrik f1-score lebih cocok).
 
 1. **Decision Tree**, Akurasi pada pelatihan dan prediksi data 78%. Dari gambar di bawah, hanya 9 data yang diprediksi sebagai true positive. Diperoleh skor F1 pada prediksi 0,002.
+<br>
 <img src="https://github.com/ayalya/PredictiveAnalysis_LungCancer/blob/main/asset/12CMDT.png" align="center"><a>
 
 *Gambar13, Confussion Matrix Decision Tree*
-
+</br>
 2. **Random Forest**, terdapat 1824 data yang dapat diprediksi sebagai true positif pada model ini. Model ini mendapatkan akurasi pelatihan 0,98 dam akurasi prediksi 0,72 sedangkan nilai F1 pada prediksi 0,14
+<br>
 <img src="https://github.com/ayalya/PredictiveAnalysis_LungCancer/blob/main/asset/13CMRF.png" align="center"><a>
 
 *Gambar14, Confussion Matrix Random Forest*
-
+</br>
 3. **KNN**, dapat memprediksi 1279 data sebagai true positif. Mendapatkan akurasi pelatihan 0,79 dan akurasi prediksi 0,73. Model mendapatkan skor f1 pada pelatihan 0,29 dan prediksi 0,1
+<br>
 <img src="https://github.com/ayalya/PredictiveAnalysis_LungCancer/blob/main/asset/13CMKNN.png" align="center"><a>
 
 *Gambar15, Confussion Matrix KNN*
-
+</br>
 4. **Gradient Boosting**, model ini tidak dapat mengenali data true positif sehingga mendapatkan skor f1 pada pelatihan dan pengujian adalah 0. Namun masih bisa memprediksi nilai true false, memiliki akurasi pelatihan dan pengujian sebesar 78%.
+<br>
 <img src="https://github.com/ayalya/PredictiveAnalysis_LungCancer/blob/main/asset/14CMGB.png" align="center"><a>
 
 *Gambar16, Confussion Matrix Gradient Boosting*
+</br>
+Akurasi dan nilai F1 pada keseluruhan model belum menunjukkan hasil yang cukup baik menyentuh angka rata-rata belum menyentuh angka 0,8 dan nilai F1 tidak sampai 0,5. Hal ini dapat terjadi karena:
+1. Persebaran pada data kategorikal terlalu menyebar dan model terlalu menggeneralisasi sehingga sulit untuk mengenali data, bahkan overfitting.
+2. Meskipun persebaran data merata, target pada proyek ini yaitu `survived` memiliki sebaran yang tidak seimbang atau undersampling. Kasus pasien yang tidak selamat lebih banyak dibandingkan dengan pasien yang hidup.
 
 #### Hasil Evaluasi
 Untuk membandingkan seluruh nilai akurasi, berikut adalah perbandingan nilai akurasi pada model:
@@ -330,9 +338,9 @@ Berdasarkan hasil yang diperoleh pada proses EDA dan pengujian model terbaik unt
 1. Beberapa fitur yang terbukti paling berpengaruh terhadap diagnosis dan keselamatan pasien kanker paru adalah: `country`, `cancer_stage`, `age_group`, `survival_months`, `bmi`, dan `cholesterol_group`. Fitur country mencerminkan kondisi fasilitas kesehatan yang tersedia, sedangkan stadium kanker (`cancer_stage`) menunjukkan korelasi kuat dengan harapan hidup—semakin tinggi stadiumnya, semakin rendah kemungkinan keselamatan pasien. Hal ini memperkuat pentingnya deteksi dini dan pola hidup sehat.
 2. Ditemukan adanya korelasi antara keberlangsungan hidup dengan stadium kanker. Pasien dengan stadium yang lebih rendah cenderung memiliki survival rate yang lebih tinggi. Namun, jenis perawatan (treatment type) tidak menunjukkan hubungan signifikan dengan stadium, menandakan bahwa efektivitas pengobatan bisa sangat bervariasi dan perlu disesuaikan secara individual. Literatur menunjukkan bahwa operasi adalah pilihan utama, tetapi harus dipertimbangkan berdasarkan kondisi spesifik pasien.
 3. Dari pengujian terhadap empat model machine learning: Decision Tree, Random Forest, KNN, dan Gradient Boosting, diperoleh dua model paling optimal:
-<br>
 - **Random Forest** menunjukkan performa terbaik dari segi akurasi dan kestabilan prediksi secara keseluruhan.
 - **KNN** memberikan nilai F1 Score tertinggi untuk kelas positif, menunjukkan kemampuannya dalam mendeteksi pasien yang memiliki kemungkinan tinggi untuk bertahan hidup.
+4. 
 
 ## Referensi
 <a name="ref1"></a>[1] J. Joseph and L. W. A. Rotty, “Kanker Paru: Laporan Kasus”, MSJ, vol. 2, no. 1, Jul. 2020.
@@ -344,3 +352,5 @@ Berdasarkan hasil yang diperoleh pada proses EDA dan pengujian model terbaik unt
 <a name="ref4"></a>[4] Wulandari, Laksmi, "Terapi Target pada Kanker Paru". Surabaya: Universitas Airlangga Press, 2019.
 
 <a name="ref5"></a>[5] "Hari Kanker Sedunia 2025", RS Roemani Muhammadiah. Online. Tersedia: https://rsroemani.com/rv2/hari-kanker-sedunia-2025-united-by-unique. [Diakses: 17 Mei 2025].
+
+[Github](https://github.com/ayalya/PredictiveAnalysis_LungCancer/tree/main)
