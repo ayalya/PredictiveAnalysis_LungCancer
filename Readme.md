@@ -36,7 +36,7 @@ Untuk menyelesaikan permasalahan dan mencapai tujuan, akan dilakukan solusi:
 Dataset yang digunakan pada proyek ini merupakan basis data yang diambil dari pasien yang komprehensif, dikhususkan pada individu yang didiagnosis menderita kanker paru-paru. Diambil dari platform [Kaggle](kaggle.com/datasets/amankumar094/lung-cancer-dataset) dengan judul Lung Cancer Dataset, basis data ini dibuat untuk menganalisis berbagai faktor pengobatan yang dapat mempengaruhi diagnosis kanker dan pengobatan. Terdiri dari 890.000 data dan 16 variabel pengamatan yang terdiri dari kondisi medis pasien.
 
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/1Datatype.png" align="center"><br>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/1Datatype.png" align="center"><a></a>
 
 *Gambar 1, Type Data Variable*
 
@@ -66,7 +66,7 @@ survived | menunjukkan apakah pasien selamat (terdiri dari ya dan tidak).
 sebelum memasuki data preparation, perlu dilakukan pemahaman terhadap pola dan persebaran data. Eksplorasi data akan dilakukan secara eksplorasi data deskriptif,  handling outlier dan missing value, univariate data, dan multivariate data.
 
 ### Data Descriptive
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/2DataDescribe.png" align="center"><br>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/2DataDescribe.png" align="center"><a></a>
 
 *Gambar 2, Data Deskriptif*
 
@@ -89,11 +89,11 @@ Pada proyek ini, dilakukan pengecekan terhadap data yang hilang dan tidak valid.
 - Pada fitur "end_treatment_date", terdapat melebihi tanggal publish dataset. Oleh harena itu, akan dilakukan pembatasan nilai maksimum hingga tanggal 31 Desember 2024.
 - Sementara itu, pada fitur "age" terindikasi adanya outlier yang ditandai oleh rentang minimum dan maksimum yang sangat lebar. Penanganan outlier pada fitur ini digunakan metode Interquantile Range (IQR).
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/3BoxplotBeforeHandlingOutlier.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/3BoxplotBeforeHandlingOutlier.png" align="center"><a></a>
 
 *Gambar 3, Visualisasi Boxplot Sebelum Handling Outlier*
 
-<img src=https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/4BoxplotBeforeAfterOutlier.png align="center"><a>
+<img src=https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/4BoxplotBeforeAfterOutlier.png align="center"><a></a>
 
 *Gambar 4, Visualisasi Boxplot Sesudah Handling Outlier*
 
@@ -107,13 +107,13 @@ Setelah proses penanganan outlier pada kedua fitur tersebut, jumlah data tersisa
 #### Data Kategori
 Data kategori pada proyek ini meliputi fiur "gender", "country", "cancer_stage", "family_history", "smoking_status", dan "treatment_type". Selanjutnya berikut adalah nilai unik pada masing-masing fitur.
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/6CatFeature.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/6CatFeature.png" align="center"><a></a>
 
 *Gambar 6, Nilai Unik pada Fitur Kategori*
 
 Untuk mengetahui persebaran diantara fitur, dilakukan visualisasi menggunakan histogram.
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/7HistogramKategori.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/7HistogramKategori.png" align="center"><a></a>
 
 *Gambar 7, Histogram pada Fitur Kategori*
 
@@ -130,7 +130,7 @@ Dari Gambar 6, dapat diketahui bahwa:
 
 Data numerik pada proyek ini adalah "age", "diagnosis_date", "bmi", "colesterol_level", "end_treatment_date", "hypertension", "asthma", "cirrhosis", "other_cancer", dan "survived".
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/8HistogramKategori.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/8HistogramKategori.png" align="center"><a></a>
 
 *Gambar 8, Histogram Data Numerik*
 
@@ -147,7 +147,7 @@ Dari grafik di atas, dapat diketahui bahwa:
 - "other_cancer", hanya sebagian kecil pasien memiliki kondisi ini.
 - "survived", mayoritas pasien tidak bertahan hidup (nilai 0 paling tinggi).
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/9DistribusiTarget.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/9DistribusiTarget.png" align="center"><a></a>
 
 *Gambar 9, Pie Chart Persebaran pada Target (survived)*
 
@@ -157,7 +157,7 @@ Target yang akan digunakan pada proyek ini merupakan "survived" yang merupakan d
 
 Muntuk melihat struktur dan karakteristik data, dilakukan visualisasi pairplot.
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/10Pairplot.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/10Pairplot.png" align="center"><a></a>
 
 *Gambar 10, Visualisasi Pairplot Dataset*
 
@@ -179,7 +179,7 @@ Menambahkan beberapa fitur yang mungkin relevan agar model dapat memberikan klas
 4. "cholesterol_group", hasil binning dari "cholesterol_level" yang dibagi menjadi Normal jika di bawah angka 200 dan High jika kadar kolesterol di atas 200.
 5. "bmi_group", hasil binning dari "bmi" yang dibagi menjadi Underweight (<18), Normal (18,5-24,9), dan Overwight (>25).
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/11CategoricalAfterFineTuning.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/11CategoricalAfterFineTuning.png" align="center"><a></a>
 
 *Gambar 11, Visualisasi Survival Month Terhadap Cancer Stage*
 
@@ -200,7 +200,7 @@ Normalisasi data dilakukan mennggunakan standard scaler pada fitur numerik terut
 
 Tidak semua fitur akan digunakan pada proses pembangunan model, mengingat terdapat 18 fitur pada data. Tujuannya agar model bisa lebih mengenali pola yang penting pada data berdasarkan korelasi dan kontribusinya terhadap model. Maka akan dilakukan seleksi fitur menggunakan teknik Lasso dan mempertimbangkan matriks korelasi (correlation matrix). 
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/12CorrelationMatrix.png" align="center"><a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/12CorrelationMatrix.png" align="center"><a></a>
 
 *Gambar 12, Heatmap Hubungan Antar Fitur Setelah Data Mengalami Preprocessing*
 
@@ -258,27 +258,28 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 ## Evaluation
 
 Metrik yang digunakan pada proyek ini meliputi:
-1. **Accuracy**, presentase prediksi yang benar dari keseluruhan data. Dengan rumus: 
-<br>
-$$
-\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
-$$
-</br>
-2. **Precision**, presentase seberapa banyak prediksi sebagai positif dan yang benar-benar positif.
-<br>$$
-\text{Precision} = \frac{TP}{TP + FP}
-</br>$$
-3. **Recall**, presentase atau nilai data yang benar-benar positif dan yang berhasil terdetaksi oleh model.
-<br>$$
-\text{Recall} = \frac{TP}{TP + FN}
-</br>$$
-4. **F1-Score**, rata-rata harmonis dari precision dan recall dan berguna pada saat data tidak seimbang.
-<br>$$
-\text{F1 Score} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-<\br>$$
+1. **Accuracy**  
+   Persentase prediksi yang benar dari keseluruhan data:
 
+   ![Accuracy](https://latex.codecogs.com/png.image?\dpi{120}&space;\text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN})
+
+2. **Precision**  
+   Persentase seberapa banyak prediksi sebagai positif yang benar-benar positif:
+
+   ![Precision](https://latex.codecogs.com/png.image?\dpi{120}&space;\text{Precision}=\frac{TP}{TP+FP})
+
+3. **Recall**  
+   Persentase data yang benar-benar positif yang berhasil terdeteksi oleh model:
+
+   ![Recall](https://latex.codecogs.com/png.image?\dpi{120}&space;\text{Recall}=\frac{TP}{TP%20+%20FN})
+
+4. **F1-Score**  
+   Rata-rata harmonis dari Precision dan Recall. Berguna saat data tidak seimbang:
+
+   ![F1 Score](https://latex.codecogs.com/png.image?\dpi{120}&space;F1\_Score=2\cdot\frac{Precision\cdot%20Recall}{Precision+Recall})
 
 Berikut adalah evaluasi pada model:
+
 
 *Tabel 2, Matriks Evaluasi Model Training*
 Model | Accuracy | Precission | Recall | F1 Score
