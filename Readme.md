@@ -72,14 +72,14 @@ sebelum memasuki data preparation, perlu dilakukan pemahaman terhadap pola dan p
 
 Dari nilai statistik di atas, diketahui bahwa:
 1. Tidak ada nilai kosong atau null pada dataset.
-2. Pada fitur `Age`, terdapat anomali terhadap nilai nimimal penderita kanker berumur 4 tahun sedangkan umur maksimal 104 tahun. Rata-rata penderita kanker berumur 55 tahun.
-3. Rata-rata `bmi` pasien kanker paru-paru menyentuh angka 30 yang beratu berat badan pasien obesitas. Nilai normal BMI pada orang dewasa adalah 18,5 hingga 24,9.
-4. Rata-rata pasien kanker paru-paru memiliki angka kolesterol yang tinggi mencapai angka 233 yang ditujukan pada fitur `colesterol_level`. Kadar kolesterol normal berada di bawah angka 200 ml/Hg.
-5. Hampir semua penderita kanker paru-paru memiliki tekanan darah tinggi (hipertensi) dapat dilihat pada fitur `hypertension`. Fitur ini merupakan data kategorikal yang telah dilakukan tahapan label encoding dan terbagi menjadi dua nilai: 1 (tinggi) dan 0 (normal). Nilai rata-rata menunjukkan angka 0,75, artinya sekitar 75% pasien dalam dataset memiliki riwayat hipertensi.
-6. Struktur data pada fitur `asthma` juga merupakan data kategorikal yang telah dilakukan tahapan label encoding. Nilai rata-rata pada fitur menunjukkan angka 0,47 menunjukkan bahwa hampir setengah penderita kanker paru-paru menderita penyakit asma.
-7. Pada fitur `cirrhosis` menujukkan rata-rata 0,226 menunjukkan bahwa hanya sedikit pasien yang menderita kerusakan pada hati.
-8. Rata-rata pada fitur `other_cancer` menunjukkan angka 0,088. Artinya hanya sebagian pasien kanker paru-paru yang mengidap kanker lainnya.
-9. Pada fitur `survival` menunjukkan rata-rata kesempatan hidup pasien yang selamat sebesar 0,22 atau 22%. Meskipun demikian, masih ada harapan pasien dengan kanker paru-paru untuk selamat dari penyakit ini.
+2. Pada fitur "Age", terdapat anomali terhadap nilai nimimal penderita kanker berumur 4 tahun sedangkan umur maksimal 104 tahun. Rata-rata penderita kanker berumur 55 tahun.
+3. Rata-rata "bmi" pasien kanker paru-paru menyentuh angka 30 yang beratu berat badan pasien obesitas. Nilai normal BMI pada orang dewasa adalah 18,5 hingga 24,9.
+4. Rata-rata pasien kanker paru-paru memiliki angka kolesterol yang tinggi mencapai angka 233 yang ditujukan pada fitur "colesterol_level". Kadar kolesterol normal berada di bawah angka 200 ml/Hg.
+5. Hampir semua penderita kanker paru-paru memiliki tekanan darah tinggi (hipertensi) dapat dilihat pada fitur "hypertension". Fitur ini merupakan data kategorikal yang telah dilakukan tahapan label encoding dan terbagi menjadi dua nilai: 1 (tinggi) dan 0 (normal). Nilai rata-rata menunjukkan angka 0,75, artinya sekitar 75% pasien dalam dataset memiliki riwayat hipertensi.
+6. Struktur data pada fitur "asthma" juga merupakan data kategorikal yang telah dilakukan tahapan label encoding. Nilai rata-rata pada fitur menunjukkan angka 0,47 menunjukkan bahwa hampir setengah penderita kanker paru-paru menderita penyakit asma.
+7. Pada fitur "cirrhosis" menujukkan rata-rata 0,226 menunjukkan bahwa hanya sedikit pasien yang menderita kerusakan pada hati.
+8. Rata-rata pada fitur "other_cancer" menunjukkan angka 0,088. Artinya hanya sebagian pasien kanker paru-paru yang mengidap kanker lainnya.
+9. Pada fitur "survival" menunjukkan rata-rata kesempatan hidup pasien yang selamat sebesar 0,22 atau 22%. Meskipun demikian, masih ada harapan pasien dengan kanker paru-paru untuk selamat dari penyakit ini.
 
 ### Mengecek Missing Value, Data Duplicate, and Outlier
 
@@ -93,13 +93,13 @@ Pada proyek ini, dilakukan pengecekan terhadap data yang hilang dan tidak valid.
 #### Data Kategori
 Data kategori pada proyek ini meliputi fiur "gender", "country", "cancer_stage", "family_history", "smoking_status", dan "treatment_type". Selanjutnya berikut adalah nilai unik pada masing-masing fitur.
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/4CatFeature.png" align="center"><a></a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/6CatFeature.png" align="center"><a></a>
 
 *Gambar 4, Nilai Unik pada Fitur Kategori*
 
 Untuk mengetahui persebaran diantara fitur, dilakukan visualisasi menggunakan histogram.
 
-<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/5HistogramKategori.png" align="center"><a></a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/7HistogramKategori.png" align="center"><a></a>
 
 *Gambar 5, Histogram pada Fitur Kategori*
 
@@ -165,14 +165,14 @@ Pada model identifikasi tipe data sebelumnya, fitur "diagnosis_date" dan "end_tr
 
 *Gambar 9, Data Deskriptif Setelah Mengubah Datetime*
 
-#### 2. Filtered Data
+### 2. Filtered Data
 
 Pada info statistik data sebelumnya, terdapat nilai maksimal pada fitur "end_treatment_date" di tahun 2026. Padahal data dipublish pada akhir tahun kemarin, maka dari itu baik pada fitur "diagnosis_date" dan "end_treatment_date" akan mengambil data sebelum tanggal 31 Desember 2024.
 
 ### 3. Menangani Outlier
 Proses visualisasi data univariate data numerik, fitur "age" memiliki banyak outlier. Untuk itu, diperlukan mengatasi outlier dengan menggunakan metode Interquantile Range (IQR). Cara kerja IQR dengan menghitung selisih antara kuartil atas (Q3) dan kuartil bawah (Q1).
 
-<img src=https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/4BoxplotBeforeAfterOutlier.png align="center"><a></a>
+<img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/4BoxplotAfterHandlingOutlier.png" align="center"><a></a>
 
 *Gambar 4, Visualisasi Boxplot Sesudah Handling Outlier*
 
@@ -306,35 +306,39 @@ Gradient Boosting | 0,779866 | 0,000000 | 0,000000 | 0,000000
 
 Proses evaluasi pada proyek ini akan menggunakan akurasi, confusion matrix, dan f1-score. Mengingat rasio nilai pada target tidak merata dengan nilai 1 lebih sedikit, maka evaluasi model akan lebih memperhatikan prediksi ke nilai 1 atau true positif (maka dari itu metrik f1-score lebih cocok).
 
-1. **Decision Tree**, Akurasi pada pelatihan dan prediksi data 0,779. Dari gambar di bawah, hanya 9 data yang diprediksi sebagai true positive. Diperoleh skor F1 pada prediksi 0,000987. 
+**1. Decision Tree**, Akurasi pada pelatihan dan prediksi data 0,779. Dari gambar di bawah, hanya 9 data yang diprediksi sebagai true positive. Diperoleh skor F1 pada prediksi 0,000987. 
 <br>
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/12CMDT.png" align="center"><a>
 
 *Gambar13, Confussion Matrix Decision Tree*
 </br>
-2. **Random Forest**, terdapat 1.824 data yang dapat diprediksi sebagai true positif pada model ini. Model ini mendapatkan akurasi pelatihan 0,81 dan akurasi prediksi 0,719 sedangkan nilai F1 pada prediksi 0,136.
+
+**2. Random Forest**, terdapat 1.824 data yang dapat diprediksi sebagai true positif pada model ini. Model ini mendapatkan akurasi pelatihan 0,81 dan akurasi prediksi 0,719 sedangkan nilai F1 pada prediksi 0,136.
 <br>
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/13CMRF.png" align="center"><a>
 
 *Gambar14, Confussion Matrix Random Forest*
 </br>
-3. **KNN**, dapat memprediksi 1.279 data sebagai true positif. Mendapatkan akurasi pelatihan 0,789 dan akurasi prediksi 0,736. Model mendapatkan skor f1 pada pelatihan 0,287 dan prediksi 0,1052.
+
+**3. KNN**, dapat memprediksi 1.279 data sebagai true positif. Mendapatkan akurasi pelatihan 0,789 dan akurasi prediksi 0,736. Model mendapatkan skor f1 pada pelatihan 0,287 dan prediksi 0,1052.
 <br>
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/13CMKNN.png" align="center"><a>
 
 *Gambar15, Confussion Matrix KNN*
 </br>
-4. **Gradient Boosting**, model ini tidak dapat mengenali data true positif sehingga mendapatkan skor f1 pada pelatihan dan pengujian adalah 0. Namun masih bisa memprediksi nilai true false, memiliki akurasi pelatihan dan pengujian sebesar 0,779.
+
+**4. Gradient Boosting**, model ini tidak dapat mengenali data true positif sehingga mendapatkan skor f1 pada pelatihan dan pengujian adalah 0. Namun masih bisa memprediksi nilai true false, memiliki akurasi pelatihan dan pengujian sebesar 0,779.
 <br>
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/14CMGB.png" align="center"><a>
 
 *Gambar16, Confussion Matrix Gradient Boosting*
 </br>
+
 Akurasi dan nilai F1 pada keseluruhan model belum menunjukkan hasil yang cukup baik menyentuh angka rata-rata belum menyentuh angka 0,8 dan nilai F1 tidak sampai 0,5. Hal ini dapat terjadi karena:
 1. Persebaran pada data kategorikal terlalu menyebar dan model terlalu menggeneralisasi sehingga sulit untuk mengenali data, bahkan overfitting.
 2. Meskipun persebaran data merata, target pada proyek ini yaitu "survived" memiliki sebaran yang tidak seimbang atau undersampling. Kasus pasien yang tidak selamat lebih banyak dibandingkan dengan pasien yang hidup, sehingga model lebih mengenali nilai True Negative atau pasien yang tidak selamat.
 
-#### Hasil Evaluasi
+### Hasil Evaluasi
 Untuk membandingkan seluruh nilai akurasi, berikut adalah perbandingan nilai akurasi pada model:
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/15accuracy.png" align="center"><a>
 
