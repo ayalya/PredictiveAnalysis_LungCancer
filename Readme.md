@@ -204,7 +204,7 @@ Setelah melakukan feature engineering, hampir semua fitur kategori terhadap "sur
 
 ### 5. Split Dataset
 
-Pembagian dataset dilakukan menjadi 70% dataset pelatihan atau training dan 30% dataset merupakan data uji atau training. Pemisahan dataset ini dilakukan untuk memisahkan data untuk tahap pelatihan dan uji agar data tidak tercampur dan model berjalan optimal. Tahapan pemisahan ini mengecualikan fitur "diagnosis_date" dan "end_treatment_date" karena sudah diwakilkan oleh "survival_months" dan "survival_group". Sedangkan target yang digunakan pada model klasifikasi adalah "survived".
+Pembagian dataset dilakukan menjadi 90% dataset pelatihan atau training dan 10% dataset merupakan data uji atau training. Pemisahan dataset ini dilakukan untuk memisahkan data untuk tahap pelatihan dan uji agar data tidak tercampur dan model berjalan optimal. Tahapan pemisahan ini mengecualikan fitur "diagnosis_date" dan "end_treatment_date" karena sudah diwakilkan oleh "survival_months" dan "survival_group". Sedangkan target yang digunakan pada model klasifikasi adalah "survived".
 
 ### 6. Label Encoding
 
