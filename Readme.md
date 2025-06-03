@@ -227,16 +227,16 @@ Dari korelasi matriks di atas, terdapat beberapa fitur yang saling berkorelasi d
 3. "survival_month" dan "survival_group" memiliki korelasi yang positif.
 4. Maka dari itu, ke delapan fitur tersebut dapat dijadikan bahan pertimbangan untuk dimasukkan ke dalam model.
 
-Banyaknya jumlah fitur, distribusi yang hampir merata pada sebagian besar fitur, serta korelasi antar fitur yang rendah dapat menyebabkan model membuat prediksi yang terlalu umum (general). Oleh karena itu, dilakukan proses pemilihan fitur (feature selection) untuk meningkatkan kinerja model menggunakan teknik Lasso.
+Banyaknya jumlah fitur, distribusi yang hampir merata pada sebagian besar fitur, serta korelasi antar fitur yang rendah dapat menyebabkan model membuat prediksi yang terlalu umum (general) dan meningkatkan kompleksitas model. Oleh karena itu, dilakukan proses pemilihan fitur (feature selection) untuk meningkatkan kinerja model menggunakan teknik Lasso.
 
-**Teknik Lasso** (Least Absolute Shrinkage and Selection Operator) merupakan salah satu teknik regresi dalam statistika dan machine learning untuk pilihan fitur. Lasso menambahkan penalti berupa nilai absolut ke dalam fungsi loss, yang disebut dengan L1 regularization. Bekerja dengan membuat beberapa koefisien regresi menjadi nol sehingga fitur yang tidak penting dihilangkan dari model.
+**Teknik Lasso** (Least Absolute Shrinkage and Selection Operator) merupakan salah satu teknik regresi dalam statistika dan machine learning untuk pilihan fitur. Cara kerja Lasso pada proyek ini, dengan menambahkan penalti berupa nilai absolut ke dalam fungsi loss senilai 0,0001 yang disebut dengan L1 regularization. Koefisien Lasso disetting tidak mendekati 0 sehingga fitur yang tidak penting dihilangkan dari model.
 
 Kelebihan dari Lasso:
 1. Dapat melakukan seleksi fitur pada model.
 2. Membantu menangani overfitting.
 3. Cocok untuk dataset dengan banyak fitur, terutama jika beberapa fitur tidak penting digunakan.
 
-Pada teknik Lasso yang memiliki hubungan dengan target, treshold yang ditetapkan 0,001 dan mendapatkan hasil fitur "counry", "cancer_stage", dan "age_group". Ditambah dari korelasi yang tinggi antar pada fitur "survival_months", "bmi", dan "cholesterol_group" dari visualisasi matrix correlation. Diputuskan, total 6 fitur yang akan digunakan dalam proses pembangunan model ini. Fitur-fitur yang dipilih, yaitu "country", "cancer_stage", "age_group", "survival_months", "bmi", dan "cholesterol_group".
+Hasil dari Lasso pada proyek ini terhadap fitur target ("survived"), didapatkan 11 fitur, yaitu "age", "gender", "country", "cancer_stage", "family_history", "cholesterol_level", "asthma", "cirrhosis", "other_cancer", "age_group", dan "bmi_group". Fitur-fitur ini berkorelasi satu sama lainnya berdasarkan teknik regresi dan dapat membantu menangani overfitting.
 
 ## Modeling
 
@@ -291,36 +291,36 @@ Berikut adalah evaluasi pada model:
 *Tabel 2, Matriks Evaluasi Model Training*
 Model | Accuracy | Precission | Recall | F1 Score
 ----------|----------|----------|----------|----------
-Decision Tree | 0,779903 | 0,716814 | 0,001483 | 0,002960
-Random Forest | 0,811924 | 0,674910 | 0,282171 | 0,397960
-KNN | 0,789898 | 0,568168 | 0,192832 | 0,287939
-Gradient Boosting | 0,7779705 | 0,000000 | 0,000000 | 0,000000
+Decision Tree | 0,779983 | 0,7965562 | 0,001697 | 0,003386
+Random Forest | 0,987345 | 0,985586 | 0,956542 | 0,970847
+KNN | 0,799000 | 0,629457 | 0,212937 | 0,318223
+Gradient Boosting | 0,779705 | 0,000000 | 0,000000 | 0,000000
 
 *Tabel 3, Matriks Evaluasi Model Testing*
 Model | Accuracy | Precission | Recall | F1 Score
 ----------|----------|----------|----------|----------
-Decision Tree | 0,779624 | 0,236842 | 0,000495 | 0,0000987
-Random Forest | 0,719856 | 0,211921 | 0,100269 | 0,136130
-KNN     | 0,736785 | 0,209055 | 0,070309 | 0,105229
+Decision Tree | 0,779612 | 0,301887 | 0,000880 | 0,001754
+Random Forest | 0,768938 | 0,217282 | 0,019075 | 0,035072
+KNN     | 0,737463 | 0,216413 | 0,073498 | 0,109730
 Gradient Boosting | 0,779866 | 0,000000 | 0,000000 | 0,000000
 
 Proses evaluasi pada proyek ini akan menggunakan akurasi, confusion matrix, dan f1-score. Mengingat rasio nilai pada target tidak merata dengan nilai 1 lebih sedikit, maka evaluasi model akan lebih memperhatikan prediksi ke nilai 1 atau true positif (maka dari itu metrik f1-score lebih cocok).
 
-**1. Decision Tree**, Akurasi pada pelatihan dan prediksi data 0,779. Dari gambar di bawah, hanya 9 data yang diprediksi sebagai true positive. Diperoleh skor F1 pada prediksi 0,000987. 
+**1. Decision Tree**, Akurasi pada pelatihan dan prediksi data 0,779. Dari gambar di bawah, hanya 16 data yang diprediksi sebagai true positive. Diperoleh skor F1 pada prediksi 0,001754, lebih baik dibandingkan tidak ada teknik pemilihan fitur.
 <br>
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/12CMDT.png" align="center"><a>
 
 *Gambar13, Confussion Matrix Decision Tree*
 </br>
 
-**2. Random Forest**, terdapat 1.824 data yang dapat diprediksi sebagai true positif pada model ini. Model ini mendapatkan akurasi pelatihan 0,81 dan akurasi prediksi 0,719 sedangkan nilai F1 pada prediksi 0,136.
+**2. Random Forest**, terdapat 347 data yang dapat diprediksi sebagai true positif pada model ini. Model ini mendapatkan akurasi pelatihan mencapai 0,987 dan akurasi prediksi 0,768 sedangkan nilai F1 pada prediksi 0,035.
 <br>
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/13CMRF.png" align="center"><a>
 
 *Gambar14, Confussion Matrix Random Forest*
 </br>
 
-**3. KNN**, dapat memprediksi 1.279 data sebagai true positif. Mendapatkan akurasi pelatihan 0,789 dan akurasi prediksi 0,736. Model mendapatkan skor f1 pada pelatihan 0,287 dan prediksi 0,1052.
+**3. KNN**, dapat memprediksi 1.337 data sebagai true positif. Mendapatkan akurasi pelatihan 0,799 dan akurasi prediksi 0,737. Model mendapatkan skor f1 pada pelatihan 0,318 dan prediksi 0,109. Nilai f1 pada model ini lebih besar daripada model lainnya dan nilai akurasi pada pelatihan dan prediksi tidak jauh berbeda, sehingga model ini paling stabil diantara model lainnya.
 <br>
 <img src="https://raw.githubusercontent.com/ayalya/PredictiveAnalysis_LungCancer/main/asset/13CMKNN.png" align="center"><a>
 
@@ -334,7 +334,7 @@ Proses evaluasi pada proyek ini akan menggunakan akurasi, confusion matrix, dan 
 *Gambar16, Confussion Matrix Gradient Boosting*
 </br>
 
-Akurasi dan nilai F1 pada keseluruhan model belum menunjukkan hasil yang cukup baik menyentuh angka rata-rata belum menyentuh angka 0,8 dan nilai F1 tidak sampai 0,5. Hal ini dapat terjadi karena:
+Akurasi sudah menunjukkan hasil yang baik pada model Random Forest, namun pada nilai F1 data pengujian keseluruhan model belum menunjukkan hasil yang cukup baik tidak sampai 0,5. Artinya, pada seluruh model belum ada yang performanya baik dalam mengenali data yang baru. Hal ini dapat terjadi karena:
 1. Persebaran pada data kategorikal terlalu menyebar dan model terlalu menggeneralisasi sehingga sulit untuk mengenali data, bahkan overfitting.
 2. Meskipun persebaran data merata, target pada proyek ini yaitu "survived" memiliki sebaran yang tidak seimbang atau undersampling. Kasus pasien yang tidak selamat lebih banyak dibandingkan dengan pasien yang hidup, sehingga model lebih mengenali nilai True Negative atau pasien yang tidak selamat.
 
@@ -344,15 +344,15 @@ Untuk membandingkan seluruh nilai akurasi, berikut adalah perbandingan nilai aku
 
 *Gambar17, Confussion Matrix Random Forest*
 
-Berdasarkan gambar perbandingan akurasi di atas, model dengan akurasi tertinggi adalah Random Forest dan KNN. Selain akurasi, nilai F1 pada pelatihan dan prediksi merupakan nilai teringgi dengan jumlah kesalahan prediksi paling minimum dan paling banyak memprediksi nilai true positif, terutama pada model Random Forest.
+Berdasarkan gambar perbandingan akurasi di atas, model dengan akurasi tertinggi adalah Random Forest dan KNN. Selain akurasi, nilai F1 kedua model pada pelatihan dan prediksi menunjukkan nilai teringgi dengan jumlah kesalahan prediksi paling minimum dan paling banyak memprediksi nilai true positif. Model Random Forest memberikan nilai pelatihan yang sangat baik dan mampu mengenali data baru. Sedangkan model KNN lebih stabil pada data pelatihan dan mengenali data baru diantara semua model.
 
 ## Conclusion
 Berdasarkan hasil yang diperoleh pada proses EDA dan pengujian model terbaik untuk menentukan kejadian kanker paru-paru dapat menjawab pertanytaan permasalahan dan dapat disimpulkan bahwa:
-1. Beberapa fitur yang terbukti paling berpengaruh terhadap diagnosis dan keselamatan pasien kanker paru adalah: "country", "cancer_stage", "age_group", "survival_months", "bmi", dan "cholesterol_group". Fitur country mencerminkan kondisi fasilitas kesehatan yang tersedia, sedangkan stadium kanker ("cancer_stage") menunjukkan korelasi kuat dengan harapan hidup—semakin tinggi stadiumnya, semakin rendah kemungkinan keselamatan pasien. Hal ini memperkuat pentingnya deteksi dini dan pola hidup sehat.
+1. Beberapa fitur yang terbukti paling berpengaruh terhadap diagnosis dan keselamatan pasien kanker paru  dapat dilakukan dengan menggunakan feature selection dengan teknik Lasso. Fitur-fitur tersebut adalah: "age", "gender", "country", "cancer_stage", "family_history", "cholesterol_level", "asthma", "cirrhosis", "other_cancer", "age_group", "bmi_group". Fitur country mencerminkan kondisi fasilitas kesehatan yang tersedia, sedangkan stadium kanker ("cancer_stage") menunjukkan korelasi kuat dengan harapan hidup—semakin tinggi stadiumnya, semakin rendah kemungkinan keselamatan pasien. Hal ini memperkuat pentingnya deteksi dini dan pola hidup sehat.
 2. Ditemukan adanya korelasi antara keberlangsungan hidup dengan stadium kanker. Pasien dengan stadium yang lebih rendah cenderung memiliki survival rate yang lebih tinggi. Namun, jenis perawatan (treatment type) tidak menunjukkan hubungan signifikan dengan stadium, menandakan bahwa efektivitas pengobatan bisa sangat bervariasi dan perlu disesuaikan secara individual. Literatur menunjukkan bahwa operasi adalah pilihan utama, tetapi harus dipertimbangkan berdasarkan kondisi spesifik pasien.
 3. Dari pengujian terhadap empat model machine learning: Decision Tree, Random Forest, KNN, dan Gradient Boosting, diperoleh dua model paling optimal:
-- **Random Forest** menunjukkan performa terbaik dari segi akurasi dan kestabilan prediksi secara keseluruhan.
-- **KNN** memberikan nilai F1 Score tertinggi untuk kelas positif, menunjukkan kemampuannya dalam mendeteksi pasien yang memiliki kemungkinan tinggi untuk bertahan hidup.
+   - **Random Forest** menunjukkan performa yang paling baik dari segi akurasi dan kestabilan prediksi secara keseluruhan.
+   - **KNN** memberikan nilai F1 Score tertinggi diantara empat model lainnya untuk kelas positif, menunjukkan kemampuannya dalam mendeteksi pasien yang memiliki kemungkinan tinggi untuk bertahan hidup.
 
 ## Referensi
 <a name="ref1"></a>[1] J. Joseph and L. W. A. Rotty, “Kanker Paru: Laporan Kasus”, MSJ, vol. 2, no. 1, Jul. 2020.
